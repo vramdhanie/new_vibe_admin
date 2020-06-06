@@ -1,9 +1,9 @@
-# New Vibe Cart
+# New Vibe Admin
 
-![GitHub](https://img.shields.io/github/license/vramdhanie/new_vibe_cart)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/vramdhanie/new_vibe_cart)
+![GitHub](https://img.shields.io/github/license/vramdhanie/new_vibe_admin)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/vramdhanie/new_vibe_admin)
 
-A retail shopping platform for non-grocery items
+An admin application for the New Vibe retail shopping platform
 
 ## Contributing
 
