@@ -14,7 +14,7 @@ import useCart from "./hooks/useCart";
 import Admin from "./pages/admin/admin";
 import useInventory from "./hooks/useInventory";
 import InventoryContext from "./data/inventoryContext";
-import ComingSoon from "./pages/comingSoon/comingSoon";
+import Home from "./pages/home/home";
 
 function App() {
   const user = useAuth();
@@ -28,20 +28,17 @@ function App() {
           value={{ ...cartObject, ...inventoryObject }}
         >
           <div className="h-screen flex flex-col w-screen">
-            <Switch>
-              <Route path="/" component={ComingSoon} />
-              <Header />
-              <main className="flex-1">
-                <Route path="/home" exact component={Shop} />
-                <Route path="/login/:next?" component={Login} />
-                <Route path="/forgot" component={ForgotPassword} />
-                <Route path="/checkout" component={Checkout} />
-                <Route path="/cart" component={Cart} />
-                <Route path="/product/:id" component={Product} />
-                <Route path="/admin" component={Admin} />
-              </main>
-              <Footer />
-            </Switch>
+            <Header />
+            <main className="flex-1">
+              <Route path="/" exact component={Home} />
+              <Route path="/login/:next?" component={Login} />
+              <Route path="/forgot" component={ForgotPassword} />
+              <Route path="/checkout" component={Checkout} />
+              <Route path="/cart" component={Cart} />
+              <Route path="/product/:id" component={Product} />
+              <Route path="/admin" component={Admin} />
+            </main>
+            <Footer />
           </div>
         </InventoryContext.Provider>
       </FirebaseContext.Provider>
