@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { withRouter, NavLink, useHistory, useLocation } from "react-router-dom";
-import { MdShoppingCart, MdHome } from "react-icons/md";
+import { MdHome } from "react-icons/md";
 import logo from "../../images/logo_full.png";
 import { FirebaseContext } from "../../firebase";
-import InventoryContext from "../../data/inventoryContext";
 
 const Header = () => {
   const { user, firebase } = useContext(FirebaseContext);
-  const { cart } = useContext(InventoryContext);
   const history = useHistory();
   const location = useLocation();
 
@@ -19,17 +17,6 @@ const Header = () => {
         </NavLink>
       </div>
       <div className="flex items-center">
-        <NavLink
-          to="/cart"
-          className="p-1 flex items-center hover:text-teal-500 relative text-blue-800"
-        >
-          <MdShoppingCart />
-          Cart
-          <div className="ml-1 p-0 text-xs text-white bg-blue-600 rounded-full w-4 h-4 text-center">
-            {cart.length}
-          </div>
-        </NavLink>
-        <div className="px-1">|</div>
         {user ? (
           <>
             <div>{user.displayName}</div>

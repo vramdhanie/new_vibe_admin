@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, Link, useParams } from "react-router-dom";
+import { useHistory, Link, useLocation } from "react-router-dom";
 import classNames from "classnames";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -7,10 +7,8 @@ import firebase from "../../firebase";
 
 const Login = () => {
   const history = useHistory();
-  let { next = "/" } = useParams();
-  if (!next.startsWith("/")) {
-    next = `/${next}`;
-  }
+  const location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   const [login, setLogin] = useState(true);
   const [firebaseError, setFirebaseError] = useState(null);
   const formik = useFormik({
@@ -40,7 +38,7 @@ const Login = () => {
         login
           ? await firebase.login(email, password)
           : await firebase.register(fullName, phoneNumber, email, password);
-        history.push(next);
+        history.replace(from);
       } catch (err) {
         console.error("Authentication Error", err);
         setFirebaseError(err.message);

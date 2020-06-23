@@ -15,6 +15,8 @@ import Admin from "./pages/admin/admin";
 import useInventory from "./hooks/useInventory";
 import InventoryContext from "./data/inventoryContext";
 import Home from "./pages/home/home";
+import AuthRoute from "./routes/authRoute";
+import PageNotFound from "./pages/pageNotFound/pageNotFound";
 
 function App() {
   const user = useAuth();
@@ -30,13 +32,24 @@ function App() {
           <div className="h-screen flex flex-col w-screen">
             <Header />
             <main className="flex-1">
-              <Route path="/" exact component={Home} />
-              <Route path="/login/:next?" component={Login} />
-              <Route path="/forgot" component={ForgotPassword} />
-              <Route path="/checkout" component={Checkout} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/product/:id" component={Product} />
-              <Route path="/admin" component={Admin} />
+              <Switch>
+                <AuthRoute path="/" exact>
+                  <Home />
+                </AuthRoute>
+                <Route path="/login" component={Login} />
+                <Route path="/forgot" component={ForgotPassword} />
+                <Route path="/checkout" component={Checkout} />
+                <AuthRoute path="/cart">
+                  <Cart />
+                </AuthRoute>
+                <AuthRoute path="/products/:retailer?">
+                  <Product />
+                </AuthRoute>
+                <Route path="/admin" component={Admin} />
+                <Route path="*">
+                  <PageNotFound />
+                </Route>
+              </Switch>
             </main>
             <Footer />
           </div>
