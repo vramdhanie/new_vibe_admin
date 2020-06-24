@@ -46,5 +46,5 @@ steps:
         "--token",
         "$_TOKEN",
         "--only",
-        "hosting:new-vibe-admin",
+        "hosting:admin",
       ]
