@@ -1,23 +1,53 @@
 import React from "react";
-import { Box, Stack, Text, Heading } from "@chakra-ui/core";
+import { Box, Grid, Text, Heading, IconButton } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Home = () => {
   return (
-    <Box>
-      <Stack spacing={8}>
-        <Box p={5} shadow="md" borderWidth="1px">
-          <Heading fontSize="xl">Products</Heading>
-          <Text mt={4}>Manage the list of products</Text>
-          <Link to="/products">Go to products page</Link>
-        </Box>
-        <Box p={5} shadow="md" borderWidth="1px">
-          <Heading fontSize="xl">Retailers</Heading>
-          <Text mt={4}>Manage retailers. </Text>
-          <Link to="/retailers">Go to retailers page</Link>
-        </Box>
-      </Stack>
-    </Box>
+    <Grid
+      templateColumns={{
+        xs: "1fr",
+        md: "repeat(2, 1fr)",
+        lg: "repeat(3, 1fr)",
+        xl: "repeat(4, 1fr)",
+      }}
+      gap={6}
+      p={8}
+    >
+      <Box p={5} shadow="md" borderWidth="1px" position="relative">
+        <Heading fontSize="xl">Products</Heading>
+        <Text mt={4}>Manage the list of products</Text>
+        <IconButton
+          as={Link}
+          to="/products"
+          variant="outline"
+          variantColor="teal"
+          aria-label="Visit product page"
+          fontSize="20px"
+          icon={MdKeyboardArrowRight}
+          position="absolute"
+          top={2}
+          right={2}
+        />
+      </Box>
+      <Box p={5} shadow="md" borderWidth="1px" position="relative">
+        <Heading fontSize="xl">Retailers</Heading>
+        <Text mt={4}>Manage retailers. </Text>
+        <IconButton
+          as={Link}
+          to="/retailers"
+          variant="outline"
+          variantColor="teal"
+          aria-label="Visit product page"
+          fontSize="20px"
+          icon={MdKeyboardArrowRight}
+          position="absolute"
+          top={2}
+          right={2}
+        />
+      </Box>
+    </Grid>
   );
 };
 

@@ -1,10 +1,17 @@
 import React from "react";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/core";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  Box,
+} from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import InventoryContext from "../../data/inventoryContext";
 
 const Product = () => {
+  const { inventory } = useContext(InventoryContext);
   return (
-    <div>
+    <Box px={8} py={2}>
       <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink as={Link} to="/">
@@ -15,8 +22,8 @@ const Product = () => {
           <BreadcrumbLink>Products</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      The products manager page
-    </div>
+      <Box mt={4}>The products manager page</Box>
+    </Box>
   );
 };
 
