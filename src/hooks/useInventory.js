@@ -33,7 +33,7 @@ function useInventory(db) {
       );
   };
 
-  return { inventory };
+  return { inventory, search };
 }
 
 export default useInventory;
