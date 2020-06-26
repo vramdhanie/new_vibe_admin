@@ -11,6 +11,7 @@ import InventoryContext from "../../data/inventoryContext";
 import ProductSearch from "./productSearch";
 import ProductSummary from "./productSummary";
 import { MdAddCircleOutline } from "react-icons/md";
+import ProductFilter from "./productFilter";
 
 const Product = () => {
   const { inventory } = useContext(InventoryContext);
@@ -29,11 +30,13 @@ const Product = () => {
       <Box mt={4}>
         <ProductSearch />
         <Box>
+          <ProductFilter />
           {inventory.map((product) => (
             <ProductSummary {...product} key={product.id} />
           ))}
         </Box>
       </Box>
+
       <IconButton
         position="absolute"
         bottom={20}

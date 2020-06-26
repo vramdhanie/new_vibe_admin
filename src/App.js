@@ -17,6 +17,7 @@ import InventoryContext from "./data/inventoryContext";
 import Home from "./pages/home/home";
 import AuthRoute from "./routes/authRoute";
 import PageNotFound from "./pages/pageNotFound/pageNotFound";
+import Raw from "./pages/raw/raw";
 
 function App() {
   const user = useAuth();
@@ -33,6 +34,9 @@ function App() {
             <Header />
             <main className="flex-1">
               <Switch>
+                <Route path="/raw">
+                  <Raw />
+                </Route>
                 <AuthRoute path="/" exact>
                   <Home />
                 </AuthRoute>

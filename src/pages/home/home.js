@@ -47,6 +47,22 @@ const Home = () => {
           right={2}
         />
       </Box>
+      <Box p={5} shadow="md" borderWidth="1px" position="relative">
+        <Heading fontSize="xl">Raw Data</Heading>
+        <Text mt={4}>Temporary for cleaning up raw data</Text>
+        <IconButton
+          as={Link}
+          to="/raw"
+          variant="outline"
+          variantColor="teal"
+          aria-label="VisitRaw page"
+          fontSize="20px"
+          icon={MdKeyboardArrowRight}
+          position="absolute"
+          top={2}
+          right={2}
+        />
+      </Box>
     </Grid>
   );
 };
