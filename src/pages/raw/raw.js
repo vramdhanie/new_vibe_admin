@@ -30,6 +30,7 @@ const Raw = () => {
           borderBottomStyle="solid"
           borderBottomWidth={1}
         >
+          <Box flex={1}>Retailer Item Number</Box>
           <Box flex={1}>Name</Box>
           <Box flex={2}>Description</Box>
           <Box flex={1}>Price</Box>
@@ -42,7 +43,8 @@ const Raw = () => {
           <Box flex={1}>quantity</Box>
         </Flex>
         {products.map((product) => (
-          <Flex>
+          <Flex borderBottom="solid 1px rgba(0,0,0,0.2)" mb={1}>
+            <Box flex={1}>{product.retailer_item_number}</Box>
             <Box flex={1}>{product.name}</Box>
             <Box flex={2}>{product.description}</Box>
             <Box flex={1}>
