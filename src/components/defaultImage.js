@@ -1,54 +1,59 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import {
-  Box,
-  Input,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  useDisclosure,
-} from "@chakra-ui/core";
+import { Box, Button } from "@chakra-ui/core";
+import ImageInput from "./imageInput";
+import { FirebaseContext } from "../firebase";
 
 const DefaultImage = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { firebase } = useContext(FirebaseContext);
+
+  const FILE_SIZE = 160 * 1024;
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
   const formik = useFormik({
     initialValues: {
       file: "",
     },
-    validationSchema: Yup.object({}),
+    validationSchema: Yup.object().shape({
+      file: Yup.mixed()
+        .required("A file is required")
+        .test(
+          "fileSize",
+          "File too large",
+          (value) => value && value.size <= FILE_SIZE
+        )
+        .test(
+          "fileFormat",
+          "Unsupported Format",
+          (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        ),
+    }),
     onSubmit: async (values) => {
-      const fileInfo = JSON.stringify(
-        {
-          fileName: values.file.name,
-          type: values.file.type,
-          size: `${values.file.size} bytes`,
-        },
-        null,
-        2
-      );
-      console.log(fileInfo);
-      onClose();
+      let storageRef = firebase.storage.ref();
+      let defaultImage = storageRef.child("images/default.png");
+      defaultImage.put(values.file).then((snapshot) => {
+        defaultImage.getDownloadURL().then((url) => console.log(url));
+      });
     },
   });
   return (
     <Box>
       <form onSubmit={formik.handleSubmit}>
-        <Input
-          pr="4.5rem"
-          type="file"
-          placeholder="Choose file"
-          name="file"
-          onChange={(event) => {
-            formik.setFieldValue("file", event.currentTarget.files[0]);
-            onOpen();
-          }}
+        <ImageInput
+          title="Select a file"
+          {...formik.getFieldProps("file")}
+          {...formik.getFieldHelpers("file")}
         />
+        {formik.touched.file && formik.errors.file ? (
+          <Box color="red" fontSize="sm">
+            {formik.errors.file}
+          </Box>
+        ) : null}
 
         <Button
           size="md"
@@ -59,25 +64,6 @@ const DefaultImage = () => {
           Save
         </Button>
       </form>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Image Preview</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <img src={formik.values.file.name} />
-          </ModalBody>
-
-          <ModalFooter>
-            <Button variantColor="primary" mr={3} onClick={formik.handleSubmit}>
-              Upload
-            </Button>
-            <Button variant="ghost" onClick={onClose}>
-              Cancel
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </Box>
   );
 };

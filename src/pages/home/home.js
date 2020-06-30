@@ -68,18 +68,6 @@ const Home = () => {
         <Heading fontSize="xl">Default Image</Heading>
         <Text mt={4}>Default image when product image is missing</Text>
         <DefaultImage />
-        <IconButton
-          as={Link}
-          to="/raw"
-          variant="outline"
-          variantColor="teal"
-          aria-label="VisitRaw page"
-          fontSize="20px"
-          icon={MdKeyboardArrowRight}
-          position="absolute"
-          top={2}
-          right={2}
-        />
       </Box>
     </Grid>
   );
