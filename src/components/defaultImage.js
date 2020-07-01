@@ -42,7 +42,7 @@ const DefaultImage = () => {
     },
   });
   return (
-    <Box>
+    <Box flex={1} textAlign="center">
       <form onSubmit={formik.handleSubmit}>
         <ImageInput
           title="Select a file"

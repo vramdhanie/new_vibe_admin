@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Text, Input, Icon } from "@chakra-ui/core";
+import { Box, Text, Input, Icon, Image, Flex } from "@chakra-ui/core";
 import { MdFolder } from "react-icons/md";
 
 const ImageInput = ({ title, setValue }) => {
@@ -31,7 +31,17 @@ const ImageInput = ({ title, setValue }) => {
   const showPreloadedImage = () => {
     let content = null;
     if (file) {
-      content = <img src={imagePreviewUrl} />;
+      content = (
+        <Image
+          src={imagePreviewUrl}
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          objectFit="cover"
+        />
+      );
     } else {
       content = <Icon color="primary.600" size="36px" as={MdFolder} />;
     }
@@ -41,10 +51,21 @@ const ImageInput = ({ title, setValue }) => {
   return (
     <Box>
       <Input type="file" ref={fileUpload} hidden onChange={handleImageChange} />
-      <Text>{title}</Text>
-      <Box onClick={showFileUpload} cursor="pointer">
+
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        onClick={showFileUpload}
+        cursor="pointer"
+        position="relative"
+        height={100}
+        flexDirection="column"
+      >
+        <Text zIndex={2} color="primary.800" fontWeight="bold">
+          {title}
+        </Text>
         {showPreloadedImage()}
-      </Box>
+      </Flex>
     </Box>
   );
 };

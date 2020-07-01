@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Text, Heading, IconButton } from "@chakra-ui/core";
+import { Box, Grid, Text, Heading, IconButton, Flex } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import DefaultImage from "../../components/defaultImage";
@@ -64,11 +64,14 @@ const Home = () => {
           right={2}
         />
       </Box>
-      <Box p={5} shadow="md" borderWidth="1px" position="relative">
-        <Heading fontSize="xl">Default Image</Heading>
-        <Text mt={4}>Default image when product image is missing</Text>
+      <Flex p={5} shadow="md" borderWidth="1px" position="relative">
+        <Box flex={1}>
+          <Heading fontSize="xl">Default Image</Heading>
+          <Text mt={4}>Default image when product image is missing</Text>
+        </Box>
+
         <DefaultImage />
-      </Box>
+      </Flex>
     </Grid>
   );
 };
