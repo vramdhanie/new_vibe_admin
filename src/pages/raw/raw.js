@@ -1,9 +1,27 @@
-import React from "react";
-import products from "../../raw/data.json";
-import { Box, Heading, Flex } from "@chakra-ui/core";
-import categories from "../../raw/categories";
+import React, { useContext, useEffect, useState } from "react";
+import raw_products from "../../raw/data.json";
+import { Box, Heading, Flex, Image } from "@chakra-ui/core";
+import raw_categories from "../../raw/categories";
+import useImage from "../../hooks/useImage";
+import { FirebaseContext } from "../../firebase";
 
 const Raw = () => {
+  const { firebase } = useContext(FirebaseContext);
+  const { image } = useImage(firebase.storage);
+
+  const [products, setProducts] = useState(raw_products);
+  const [categories, setCategories] = useState(raw_categories);
+
+  useEffect(() => {
+    setProducts(
+      raw_products.map((product) => ({
+        ...product,
+        image: image,
+        ...categories[product.main_category],
+      }))
+    );
+  }, [image]);
+
   return (
     <Box>
       <Box>
@@ -15,7 +33,7 @@ const Raw = () => {
         </Flex>
         {Object.entries(categories).map(
           ([key, { main_category: main, sub_category: sub }]) => (
-            <Flex>
+            <Flex key={key}>
               <Box flex={1}>{key}</Box>
               <Box flex={1}>{main}</Box>
               <Box flex={1}>{sub}</Box>
@@ -37,32 +55,40 @@ const Raw = () => {
           <Box flex={1}>UPC</Box>
           <Box flex={1}>size</Box>
           <Box flex={1}>item type</Box>
-          <Box flex={1}>main category</Box>
+          <Box flex={1}>Category</Box>
           <Box flex={1}>manufacturer</Box>
           <Box flex={1}>weight</Box>
           <Box flex={1}>quantity</Box>
+          <Box flex={1}>Image</Box>
         </Flex>
-        {products.map((product) => (
+        {products[0] ? (
           <Flex borderBottom="solid 1px rgba(0,0,0,0.2)" mb={1}>
-            <Box flex={1}>{product.retailer_item_number}</Box>
-            <Box flex={1}>{product.name}</Box>
-            <Box flex={2}>{product.description}</Box>
+            <Box flex={1}>{products[0].retailer_item_number}</Box>
+            <Box flex={1}>{products[0].name}</Box>
+            <Box flex={2}>{products[0].description}</Box>
             <Box flex={1}>
               {Intl.NumberFormat("en-US", {
                 style: "currency",
                 currency: "TTD",
                 currencyDisplay: "narrowSymbol",
-              }).format(product.price)}
+              }).format(products[0].price)}
             </Box>
-            <Box flex={1}>{product.UPC}</Box>
-            <Box flex={1}>{product.size}</Box>
-            <Box flex={1}>{product.item_type}</Box>
-            <Box flex={1}>{product.main_category}</Box>
-            <Box flex={1}>{product.manufacturer}</Box>
-            <Box flex={1}>{product.weight}</Box>
-            <Box flex={1}>{product.quantity}</Box>
+            <Box flex={1}>{products[0].UPC}</Box>
+            <Box flex={1}>{products[0].size}</Box>
+            <Box flex={1}>{products[0].item_type}</Box>
+            <Box flex={1}>
+              {products[0].main_category}/{products[0].sub_category}
+            </Box>
+            <Box flex={1}>{products[0].manufacturer}</Box>
+            <Box flex={1}>{products[0].weight}</Box>
+            <Box flex={1}>{products[0].quantity}</Box>
+            <Box flex={1}>
+              <Image src={products[0].image} />
+            </Box>
           </Flex>
-        ))}
+        ) : (
+          ""
+        )}
       </Box>
     </Box>
   );

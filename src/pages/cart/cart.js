@@ -17,13 +17,13 @@ const Cart = () => {
           <div className="items-center flex justify-end px-2 flex-col md:flex-row">
             <Link
               to="/checkout"
-              className="mr-1 flex-shrink-0 border hover:border-yellow-700 bg-yellow-500 hover:bg-yellow-600 text-black  border-yellow-800 text-sm border-4 hover:text-gray-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+              className="mr-1 flex-shrink-0 hover:border-yellow-700 bg-yellow-500 hover:bg-yellow-600 text-black  border-yellow-800 text-sm border-4 hover:text-gray-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Proceed to checkout
             </Link>
             <Link
               to="/"
-              className="flex-shrink-0 border border-yellow-700 hover:bg-yellow-700  hover:text-white hover:bg-white gb-yellow-200 hover:border-yellow-500 text-sm border-4 text-yellow-700 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed mt-2 md:mt-0"
+              className="flex-shrink-0 border-yellow-700 hover:bg-yellow-700  hover:text-white gb-yellow-200 hover:border-yellow-500 text-sm border-4 text-yellow-700 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed mt-2 md:mt-0"
             >
               Continue shopping
             </Link>
@@ -60,7 +60,7 @@ const Cart = () => {
             <div className="p-8">
               <Link
                 to="/"
-                className="mr-1 flex-shrink-0 border hover:border-yellow-700 bg-yellow-500 hover:bg-yellow-600 text-black  border-yellow-800 text-sm border-4 hover:text-gray-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                className="mr-1 flex-shrink-0 hover:border-yellow-700 bg-yellow-500 hover:bg-yellow-600 text-black  border-yellow-800 text-sm border-4 hover:text-gray-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Shop now!
               </Link>
@@ -72,13 +72,13 @@ const Cart = () => {
         <div className="items-center flex justify-end px-2">
           <Link
             to="/checkout"
-            className="mr-1 flex-shrink-0 border hover:border-yellow-700 bg-yellow-500 hover:bg-yellow-600 text-black  border-yellow-800 text-sm border-4 hover:text-gray-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+            className="mr-1 flex-shrink-0 hover:border-yellow-700 bg-yellow-500 hover:bg-yellow-600 text-black  border-yellow-800 text-sm border-4 hover:text-gray-800 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Proceed to checkout
           </Link>
           <Link
             to="/"
-            className="flex-shrink-0 border border-yellow-700 hover:bg-yellow-700  hover:text-white  gb-yellow-200 hover:border-yellow-500 text-sm border-4 text-yellow-700 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex-shrink-0 border-yellow-700 hover:bg-yellow-700  hover:text-white  gb-yellow-200 hover:border-yellow-500 text-sm border-4 text-yellow-700 py-1 px-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Continue shopping
           </Link>

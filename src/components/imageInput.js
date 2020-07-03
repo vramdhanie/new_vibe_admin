@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Box, Text, Input, Icon, Image, Flex } from "@chakra-ui/core";
 import { MdFolder } from "react-icons/md";
 
-const ImageInput = ({ title, setValue }) => {
+const ImageInput = ({ title, setValue, url }) => {
   const [file, setFile] = useState(undefined);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState(undefined);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(url);
 
   const fileUpload = React.createRef();
   const handleImageChange = (e) => {

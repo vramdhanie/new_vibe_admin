@@ -4,9 +4,13 @@ import * as Yup from "yup";
 import { Box, Button } from "@chakra-ui/core";
 import ImageInput from "./imageInput";
 import { FirebaseContext } from "../firebase";
+import useImage from "../hooks/useImage";
 
 const DefaultImage = () => {
   const { firebase } = useContext(FirebaseContext);
+  const { image, setImage } = useImage(firebase.storage);
+
+  console.log(image);
 
   const FILE_SIZE = 160 * 1024;
   const SUPPORTED_FORMATS = [
@@ -37,7 +41,7 @@ const DefaultImage = () => {
       let storageRef = firebase.storage.ref();
       let defaultImage = storageRef.child("images/default.png");
       defaultImage.put(values.file).then((snapshot) => {
-        defaultImage.getDownloadURL().then((url) => console.log(url));
+        defaultImage.getDownloadURL().then((url) => setImage(url));
       });
     },
   });
@@ -48,6 +52,7 @@ const DefaultImage = () => {
           title="Select a file"
           {...formik.getFieldProps("file")}
           {...formik.getFieldHelpers("file")}
+          url={image}
         />
         {formik.touched.file && formik.errors.file ? (
           <Box color="red" fontSize="sm">
