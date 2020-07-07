@@ -2,6 +2,10 @@ export const COLLECTION_NAMES = {
   CARTS: "carts",
   GUEST_CARTS: "guest_carts",
   USERS: "users",
+  PRODUCTS: "products",
+  RETAILERS: "retailer",
+  CATEGORIES: "categories",
+  COUNTS: "counts",
 };
 
 export const LOCAL_STORAGE_NAMES = {
