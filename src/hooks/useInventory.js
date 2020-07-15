@@ -55,17 +55,37 @@ function useInventory(db) {
       created: firebase.firestore.FieldValue.serverTimestamp(),
       lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    return prodRef.add(finalProduct).then(() => {
-      const pcount = counts.doc("products");
-      pcount.update("count", firebase.firestore.FieldValue.increment(1));
-      if (product.main_category) {
-        const ccount = counts.doc(`products_${product.main_category}`);
-        ccount.set(
-          { count: firebase.firestore.FieldValue.increment(1) },
-          { merge: true }
-        );
-      }
-    });
+    return prodRef
+      .add(finalProduct)
+      .then(() => {
+        const pcount = counts.doc("products");
+        return pcount.get().then((doc) => {
+          if (doc.exists) {
+            return pcount.update(
+              "count",
+              firebase.firestore.FieldValue.increment(1)
+            );
+          } else {
+            return pcount.set({ count: 1 });
+          }
+        });
+      })
+
+      .then(() => {
+        if (product.main_category) {
+          const ccount = counts.doc(`products_${product.main_category}`);
+          return ccount.get().then((doc) => {
+            if (doc.exists) {
+              return ccount.set(
+                { count: firebase.firestore.FieldValue.increment(1) },
+                { merge: true }
+              );
+            } else {
+              return ccount.set({ count: 1 });
+            }
+          });
+        }
+      });
   };
 
   const addCategory = (category) => {

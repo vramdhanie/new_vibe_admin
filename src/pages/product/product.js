@@ -32,6 +32,7 @@ const Product = () => {
       manufacturer: null,
       weight: 0,
       quantity: 0,
+      special: true,
       image:
         "https://firebasestorage.googleapis.com/v0/b/new-vibe.appspot.com/o/images%2Fdefault.png?alt=media&token=f7418ccd-22ff-43d1-8830-d4aeaef94af5",
     };
