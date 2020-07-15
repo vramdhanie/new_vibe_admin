@@ -34,9 +34,9 @@ function App() {
             <Header />
             <main className="flex-1">
               <Switch>
-                <AuthRoute path="/raw">
+                {/* <AuthRoute path="/raw">
                   <Raw />
-                </AuthRoute>
+                </AuthRoute> */}
                 <AuthRoute path="/" exact>
                   <Home />
                 </AuthRoute>
