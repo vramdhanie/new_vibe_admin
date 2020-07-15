@@ -18,6 +18,7 @@ import Home from "./pages/home/home";
 import AuthRoute from "./routes/authRoute";
 import PageNotFound from "./pages/pageNotFound/pageNotFound";
 import Raw from "./pages/raw/raw";
+import Retailers from "./pages/retailers/retailers"
 
 function App() {
   const user = useAuth();
@@ -39,6 +40,9 @@ function App() {
                 </AuthRoute> */}
                 <AuthRoute path="/" exact>
                   <Home />
+                </AuthRoute>
+                <AuthRoute path="/retailers" exact>
+                  <Retailers />
                 </AuthRoute>
                 <Route path="/login" component={Login} />
                 <Route path="/forgot" component={ForgotPassword} />
