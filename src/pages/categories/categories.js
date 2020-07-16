@@ -3,14 +3,14 @@ import firebase  from '../../firebase';
 import { Box, Heading } from '@chakra-ui/core';
 import { COLLECTION_NAMES } from '../../utilities/constants';
 
-const Retailers = () => {
+const Categories = () => {
 
-    const [retailers, setRetailers] = useState([]);
+    const [categories, setCategories] = useState([]);
     
     useEffect(() => {
         firebase
             .db
-            .collection(COLLECTION_NAMES.RETAILERS)
+            .collection(COLLECTION_NAMES.CATEGORIES)
             .get()
             .then(snapshot => {
                 return snapshot.docs.map(doc => {
@@ -20,19 +20,19 @@ const Retailers = () => {
                     }
                 })
             })
-            .then(retDocs => {
-                setRetailers(retDocs);
+            .then(catDocs => {
+                setCategories(catDocs);
             })
     }, []);
 
     return (
         <Box>
-            <Heading>Retailers</Heading>
+            <Heading>Categories</Heading>
             <Box>
-                {retailers.map(retailer => <Box>{retailer.name}</Box>)}
+                {categories.map(category => <Box>{category.id}</Box>)}
             </Box>
         </Box>
     )
 }
 
-export default Retailers;
+export default Categories;
