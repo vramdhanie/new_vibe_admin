@@ -80,11 +80,11 @@ const Product = () => {
             boxShadow="1px 1px 2px 2px rgba(0,0,0,0.2)"
             onClick={addProductHandler}
           />
-          <Box>Paging</Box>
+          <Box>Paging </Box>
           {inventory.map((product) => (
             <ProductSummary {...product} key={product.id} />
           ))}
-          <Box>Paging</Box>
+          <Box>Paging </Box>
         </Box>
       </Box>
 
